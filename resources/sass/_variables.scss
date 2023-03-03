@@ -1,0 +1,26 @@
+// Body
+// $body-bg: linear-gradient(70deg, #e6e6e6, #f7f7f7);
+// $body-bg: #f7f7f7;
+
+// Typography
+$font-family-sans-serif: 'Lato', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.7;
+
+// overide input shadow
+// $input-box-shadow: none;
+$input-focus-box-shadow: none;
+// $input-btn-focus-box-shadow: none;
+$form-select-box-shadow: none;
+$form-select-focus-box-shadow: none;
+$btn-focus-box-shadow: none;
+$form-check-input-focus-box-shadow: none;
+$form-range-thumb-focus-box-shadow: none;
+$pagination-focus-box-shadow: none;
+$btn-close-focus-shadow: none;
+$btn-box-shadow: none;
+// $btn-active-box-shadow: none;
+
+$btn-active-box-shadow: none !important;
+$input-box-shadow: none !important;
+$input-btn-focus-box-shadow: none !important;

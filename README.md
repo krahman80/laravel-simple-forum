@@ -44,3 +44,8 @@ there will a notification, just select no
 > php artisan migrate
 
 ## laravel ui installation
+> composer require laravel/ui
+
+> php artisan ui bootstrap --auth
+
+> npm install && npm run dev
