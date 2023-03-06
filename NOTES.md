@@ -34,8 +34,13 @@
 * guest can login
 * user can create community
   1. when creating community user can select topics
-  2. use slug when showing single community
-  3. use soft_deletes
+  2. validate community before inserting into database
+* user can update his community
+  1. validate community before updating community
+* user can view single community
+  1. use slug when showing single community
+* user can delete his own community
+  1. use soft_deletes when deleting community
 * user can create post inside community
   1. when creating post user can upload images
   2. when creating post user can add url
@@ -43,11 +48,6 @@
 
 ## To Do
 
-* Tabel user already provided by laravel default migration
-* Add user_name to users table
-* Create community model and migration
-* Add field to migration 
-* Create topics model
-* Create community_topic table
+* save community
 
 

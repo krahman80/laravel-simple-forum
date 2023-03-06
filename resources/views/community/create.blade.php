@@ -1,0 +1,77 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Create Community') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('communities.store') }}">
+                        @csrf
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text"
+                                    class="form-control form-control-sm @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Description')
+                                }}</label>
+
+                            <div class="col-md-6">
+
+                                <textarea name="description" id="description" cols="30" rows="3"
+                                    class="form-control form-control-sm @error('description') is-invalid @enderror"
+                                    required></textarea>
+
+                                @error('descrption')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="topics" class="col-md-4 col-form-label text-md-end">{{ __('Topic') }}</label>
+                            <div class="col-md-6">
+                                @foreach ($topics as $topic)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="{{ $topic->id }}"
+                                        name="topics[]">
+                                    <label class="form-check-label">
+                                        {{ $topic->name }}
+                                    </label>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-sm btn-primary">
+                                    {{ __('Create Community') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
