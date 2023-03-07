@@ -5,23 +5,23 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Community') }}</div>
+                <div class="card-header">{{ __('Edit Community') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('communities.store') }}">
+                    <form method="POST" action="{{ route('communities.update', $community) }}">
                         @csrf
-
+                        @method('PUT')
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text"
                                     class="form-control form-control-sm @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    value="{{ $community->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>{{ $community->message }}</strong>
                                 </span>
                                 @enderror
                             </div>
@@ -35,7 +35,7 @@
 
                                 <textarea name="description" id="description" cols="30" rows="3"
                                     class="form-control form-control-sm @error('description') is-invalid @enderror"
-                                    required>{{ old('description') }}</textarea>
+                                    required>{{ $community->description }}</textarea>
 
                                 @error('descrption')
                                 <span class="invalid-feedback" role="alert">
@@ -51,7 +51,8 @@
                                 @foreach ($topics as $topic)
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="{{ $topic->id }}"
-                                        name="topics[]">
+                                        name="topics[]" @if($community->topics->contains($topic->id)) checked @endif
+                                    >
                                     <label class="form-check-label">
                                         {{ $topic->name }}
                                     </label>
@@ -63,8 +64,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-sm btn-primary">
-                                    {{ __('Create Community') }}
+                                <button type="submit" class="btn btn-sm btn-secondary">
+                                    {{ __('Update Community') }}
                                 </button>
                             </div>
                         </div>
