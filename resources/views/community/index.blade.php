@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between"">
-                        <div>{{ __('List Community') }}</div>
+                        <div>{{ __('List of My Community') }}</div>
                         <div><a href=" {{ route('communities.create') }}" class="btn btn-sm btn-secondary">xxx</a>
                     </div>
                 </div>

@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('c/{slug}', [App\Http\Controllers\CommunityController::class, 'show'])->name('communities.show');
+Route::get('p/{postId}', [\App\Http\Controllers\CommunityPostController::class, 'show'])->name('communities.posts.show');
 
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::resource('communities', App\Http\Controllers\CommunityController::class);
+    Route::resource('communities', App\Http\Controllers\CommunityController::class)->except(['show']);
+    Route::resource('communities.post', App\Http\Controllers\CommunityPostController::class)->except(['show']);
 });

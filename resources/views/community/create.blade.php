@@ -37,7 +37,7 @@
                                     class="form-control form-control-sm @error('description') is-invalid @enderror"
                                     required>{{ old('description') }}</textarea>
 
-                                @error('descrption')
+                                @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

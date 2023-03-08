@@ -56,10 +56,11 @@ class CommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Community $community)
+    public function show($slug)
     {
-        // return $community->name;
-        return view('community.show', ['community' => $community]);
+        $community = Community::where('slug', $slug)->firstOrFail();
+        $posts = $community->posts()->paginate(10);
+        return view('community.show', compact('community', 'posts'));
     }
 
     /**
