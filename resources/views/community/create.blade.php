@@ -63,7 +63,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-sm btn-primary">
+                                <button type="submit" class="btn btn-sm btn-secondary">
                                     {{ __('Create Community') }}
                                 </button>
                             </div>

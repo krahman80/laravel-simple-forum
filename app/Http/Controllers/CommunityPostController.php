@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Community;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommunityPostController extends Controller
 {
@@ -37,13 +38,20 @@ class CommunityPostController extends Controller
      */
     public function store(StorePostRequest $request, Community $community)
     {
+
+
         $post = $community->posts()->create([
             'user_id' => auth()->id(),
             'title' => $request->title,
-            'post' => $request->post ?? null,
-            'url' => $request->url ?? null,
-            'image' => $request->image ?? null
+            'post' => $request->post,
+            'url' => $request->url,
         ]);
+
+        if ($request->hasFile('image')) {
+            $image = Str::lower($request->file('image')->getClientOriginalName());
+            $request->file('image')->storeAs('posts/' . $post->id, $image);
+            $post->update(['image' => $image]);
+        }
 
         // if ($request->hasFile('post_image')) {
         //     $image = $request->file('post_image')->getClientOriginalName();
@@ -70,8 +78,7 @@ class CommunityPostController extends Controller
     public function show($postId)
     {
         $post = Post::findOrFail($postId);
-        dd($post);
-        return view('posts.show', compact('post'));
+        return view('post.show', compact('post'));
     }
 
     /**
