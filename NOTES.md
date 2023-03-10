@@ -42,12 +42,13 @@
   1. use slug when showing single community
 * user can delete his own community
   1. use soft_deletes when deleting community
-
-### To Do
 * user can create post inside community
   1. when creating post user can upload images
   2. when creating post user can add url
 * user can edit his post
+* user can delete his post
+
+### To Do
 * user can reply his post or other user's post
 
 

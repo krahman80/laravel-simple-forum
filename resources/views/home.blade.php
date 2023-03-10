@@ -11,6 +11,7 @@
 
                         <div class="card-body">
                             {{-- content begin here --}}
+                            @forelse ($posts as $post)
                             <div class="row">
                                 <div class="col-1 text-center">
                                     <div>
@@ -26,18 +27,18 @@
                                     </div>
                                 </div>
                                 <div class="col-11">
-                                    <a href="#" class="link-secondary">
-                                        <h3>Post Title</h3>
+                                    <a href="{{ route('communities.post.show', $post->id) }}" class="link-secondary">
+                                        <h3>{{ $post->title }}</h3>
                                     </a>
                                     <p>
                                         <small>
-                                            <span class="text-muted">Posted</span> <span class="text-black">2 days
-                                                ago</span> <span class="text-muted">ago
-                                                by</span> <span class="text-black">kjzde</span>
+                                            <span class="text-muted">Posted</span> <span class="text-black">{{
+                                                $post->created_at->diffForHumans() }}</span> <span
+                                                class="text-muted">ago
+                                                by</span> <span class="text-black">{{ $post->user->username }}</span>
                                         </small>
                                     </p>
-                                    <p>Quickly change the font-size of text. While our heading classes. Quickly change
-                                        the font-size of text. While our heading classes </p>
+                                    <p>{{ Illuminate\Support\Str::of($post->post)->words('10', '...') }}</p>
                                     <div class="text-sm op-5">
                                         <small><a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2"
                                                 href="#">#AppStrap Theme</a> <a class="text-black mr-2"
@@ -46,39 +47,16 @@
                                 </div>
                             </div>
                             <hr>
+                            @empty
                             <div class="row">
-                                <div class="col-1 text-center">
-                                    <div>
-                                        <a href="#" class="link-secondary text-decoration-none">
-                                            <i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <div style="font-size: 20px; font-weight: bold">{{ 2 }}</div>
-                                    <div>
-                                        <a href="#" class="link-secondary text-decoration-none">
-                                            <i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-11">
-                                    <a href="#" class="link-secondary">
-                                        <h3>Post Title</h3>
-                                    </a>
-                                    <p>
-                                        <small>
-                                            <span class="text-muted">Posted</span> <span class="text-black">2 days
-                                                ago</span> <span class="text-muted">ago
-                                                by</span> <span class="text-black">kjzde</span>
-                                        </small>
-                                    </p>
-                                    <p>Quickly change the font-size of text. While our heading classes </p>
-                                    <div class="text-sm op-5"><small> <a class="text-black mr-2"
-                                                href="#">#Development</a> <a class="text-black mr-2" href="#">#AppStrap
-                                                Theme</a></small></div>
-                                </div>
+                                <div class="col-md-12">No post found</div>
                             </div>
-                            {{-- content end here --}}
                             <hr>
+                            @endforelse
+                            <div class="d-flex justify-content-center py-3">
+                                {{ $posts->links() }}
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -89,34 +67,22 @@
                                 <div class="card-header">{{ __('New post') }}</div>
 
                                 <div class="card-body">
+                                    @forelse ($posts as $post)
+                                    <a href="#" class="link-secondary">{{ $post->title }}</a>
+                                    <p class="text-sm">
+                                        <small>
+                                            <span class="text-muted">Posted</span> <span class="text-black">{{
+                                                $post->created_at->diffForHumans() }}</span> <span
+                                                class="text-muted">ago
+                                                by</span> <span class="text-black">{{ $post->user->username }}</span>
+                                        </small>
+                                    </p>
+                                    <hr>
+                                    @empty
+                                    <p>Post not found!</p>
+                                    @endforelse
 
-                                    <a href="#" class="link-secondary">hello wolrd test</a>
-                                    <p class="text-sm">
-                                        <small>
-                                            <span class="text-muted">Posted</span> <span class="text-black">2 days
-                                                ago</span> <span class="text-muted">ago
-                                                by</span> <span class="text-black">kjzde</span>
-                                        </small>
-                                    </p>
-                                    <hr>
-                                    <a href="#" class="link-secondary">lorem ipsum</a>
-                                    <p class="text-sm">
-                                        <small>
-                                            <span class="text-muted">Posted</span> <span class="text-black">2 days
-                                                ago</span> <span class="text-muted">ago
-                                                by</span> <span class="text-black">kjzde</span>
-                                        </small>
-                                    </p>
-                                    <hr>
-                                    <a href="#" class="link-secondary">lipsum dot amet</a>
-                                    <p class="text-sm">
-                                        <small>
-                                            <span class="text-muted">Posted</span> <span class="text-black">2 days
-                                                ago</span> <span class="text-muted">ago
-                                                by</span> <span class="text-black">kjzde</span>
-                                        </small>
-                                    </p>
-                                    <hr>
+
                                 </div>
                             </div>
                         </div>
@@ -128,7 +94,7 @@
 
                                 <div class="card-body">
 
-                                    @forelse ($community as $community)
+                                    @forelse ($communities as $community)
                                     <a href="{{ route('communities.show', $community) }}" class="link-secondary">{{
                                         $community->name }}</a>
                                     <p class="text-sm">

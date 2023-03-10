@@ -33,7 +33,39 @@
 
                                 </small>
                             </p>
+                            @if ($post->url != '')
+                            <div class="mb-2">
+                                <a href="{{ $post->url }}" target="_blank" rel="noopener noreferrer">{{ $post->url
+                                    }}</a>
+                            </div>
+                            @endif
+                            @if ($post->image != '')
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/posts/'. $post->id . '/thumbnail_' . $post->image) }}"
+                                    alt="{{ $post->image }}">
+                            </div>
+                            @endif
                             <p>{{ $post->post }}</p>
+
+                            @auth
+                            @can('edit-post', $post)
+                            <div class="d-flex justify-content-start">
+                                <div class="me-3">
+                                    <a href="{{ route('communities.post.edit', [$post->community, $post]) }}"
+                                        class="ps-0 btn btn-link text-dark">Edit</a>
+                                </div>
+                                <form action="{{ route('communities.post.destroy', [$post->community, $post]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="ps-0 btn btn-link text-dark"
+                                        onclick="return confirm('Delete this post ?')">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;delete
+                                    </button>
+                                </form>
+                            </div>
+                            @endcan
+                            @endauth
                         </div>
                     </div>
                     <hr>

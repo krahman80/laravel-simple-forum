@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('c/{slug}', [App\Http\Controllers\CommunityController::class, 'show'])->name('communities.show');
-Route::get('p/{postId}', [\App\Http\Controllers\CommunityPostController::class, 'show'])->name('communities.posts.show');
+Route::get('p/{postId}', [\App\Http\Controllers\CommunityPostController::class, 'show'])->name('communities.post.show');
 
 Auth::routes(['verify' => true]);
 

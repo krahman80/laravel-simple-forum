@@ -24,11 +24,16 @@
 
                     </div>
                     <br>
+                    @if (session('message'))
+                    <div class="alert alert-info">
+                        {{ session('message') }}
+                    </div>
+                    @endif
                     @forelse ($posts as $post)
                     <div class="py-3">
                         <div class="row align-items-center">
                             <div class="col-md-8 mb-3 mb-sm-0">
-                                <h5><a href="{{ route('communities.posts.show', [$post->id]) }}" class="link-dark">{{
+                                <h5><a href="{{ route('communities.post.show', [$post->id]) }}" class="link-dark">{{
                                         $post->title }}</a></h5>
                                 <p><small>
                                         <span class="text-muted">Posted</span> <span class="text-black">{{
