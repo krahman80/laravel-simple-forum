@@ -48,9 +48,12 @@
 * user can edit his post
 * user can delete his post
 * user can add comment to post
+* add data seeder
 
 ### To Do
+* change template, add shared view
 * add votes to post
+
 
 
 

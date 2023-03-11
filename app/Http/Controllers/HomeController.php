@@ -19,7 +19,7 @@ class HomeController extends Controller
         // and order by lattest post
         $posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
-        $communities = Community::all();
+        $communities = Community::orderBy('created_at', 'desc')->take(5)->get();
         return view('home', compact('communities', 'posts'));
     }
 }

@@ -115,7 +115,12 @@
                         </div>
                     </div>
                     @empty
-                    <p>no comments</p>
+                    <div class="row mb-3">
+                        <div class="col-1">&nbsp;</div>
+                        <div class="col-11">
+                            <p>No comments yet...</p>
+                        </div>
+                    </div>
                     @endforelse
 
                 </div>

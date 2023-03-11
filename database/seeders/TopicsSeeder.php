@@ -14,12 +14,12 @@ class TopicsSeeder extends Seeder
      */
     public function run()
     {
-
-        Topic::create(['name' => 'Mobil']);
+        Topic::create(['name' => 'Car']);
         Topic::create(['name' => 'Motor']);
-        Topic::create(['name' => 'Design']);
-        Topic::create(['name' => 'Mobil listrik']);
-        Topic::create(['name' => 'Roket']);
-        Topic::create(['name' => 'Programming']);
+        Topic::create(['name' => 'Car Home']);
+        Topic::create(['name' => 'RV']);
+        Topic::create(['name' => 'EV']);
+        Topic::create(['name' => 'Hybrid Car']);
+        Topic::create(['name' => 'Misc']);
     }
 }

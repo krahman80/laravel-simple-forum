@@ -41,12 +41,10 @@
                                     <p>{{ Illuminate\Support\Str::of($post->post)->words('10', '...') }}</p>
                                     <div class="text-sm op-5">
                                         <small>
-
+                                            @foreach ($post->community->topics as $item)
+                                            <a class="text-black mr-2" href="#">#{{ $item->name }}</a>
+                                            @endforeach
                                         </small>
-                                        {{-- {{ $post->community->topics}} --}}
-                                        @foreach ($post->community->topics as $item)
-                                        <a class="text-black mr-2" href="#">#{{ $item->name }}</a>
-                                        @endforeach
                                     </div>
                                 </div>
                             </div>
