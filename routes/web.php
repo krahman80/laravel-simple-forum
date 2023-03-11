@@ -22,4 +22,5 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('communities', App\Http\Controllers\CommunityController::class)->except(['show']);
     Route::resource('communities.post', App\Http\Controllers\CommunityPostController::class)->except(['show']);
+    Route::resource('posts.comment', App\Http\Controllers\PostCommentController::class)->only(['store']);
 });

@@ -16,11 +16,16 @@
                     <hr>
 
                     <div class="d-flex justify-content-end">
+                        @auth
                         <p><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp;&nbsp;
                             <a href="{{ route('communities.post.create', $community) }}" class="text-dark">
                                 Add post
                             </a>
                         </p>
+                        @endauth
+                        @guest
+                        <p class="text-muted">sign in to add a post</p>
+                        @endguest
 
                     </div>
                     <br>

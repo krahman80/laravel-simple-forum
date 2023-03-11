@@ -47,9 +47,10 @@
   2. when creating post user can add url
 * user can edit his post
 * user can delete his post
+* user can add comment to post
 
 ### To Do
-* user can reply his post or other user's post
+* add votes to post
 
 
 

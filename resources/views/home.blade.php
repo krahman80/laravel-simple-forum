@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 mb-3">
                     <div class="card">
                         <div class="card-header">{{ __('Home') }}</div>
 
@@ -40,9 +40,13 @@
                                     </p>
                                     <p>{{ Illuminate\Support\Str::of($post->post)->words('10', '...') }}</p>
                                     <div class="text-sm op-5">
-                                        <small><a class="text-black mr-2" href="#">#C++</a> <a class="text-black mr-2"
-                                                href="#">#AppStrap Theme</a> <a class="text-black mr-2"
-                                                href="#">#Wordpress</a></small>
+                                        <small>
+
+                                        </small>
+                                        {{-- {{ $post->community->topics}} --}}
+                                        @foreach ($post->community->topics as $item)
+                                        <a class="text-black mr-2" href="#">#{{ $item->name }}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +72,8 @@
 
                                 <div class="card-body">
                                     @forelse ($posts as $post)
-                                    <a href="#" class="link-secondary">{{ $post->title }}</a>
+                                    <a href="{{ route('communities.post.show', $post->id) }}" class="link-secondary">{{
+                                        $post->title }}</a>
                                     <p class="text-sm">
                                         <small>
                                             <span class="text-muted">Posted</span> <span class="text-black">{{

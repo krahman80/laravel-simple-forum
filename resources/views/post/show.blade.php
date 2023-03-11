@@ -24,7 +24,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-11">
+                        <div class="col-11 mb-3">
                             <h3>{{ $post->title }}</h3>
                             <p><small>
                                     <span class="text-muted">Posted</span> <span class="text-black">{{
@@ -66,67 +66,57 @@
                             </div>
                             @endcan
                             @endauth
+                            <hr>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-end">
-                        <p>
-                            <i class="fa fa-comments-o" aria-hidden="true">&nbsp;&nbsp;</i><a href="#"
-                                class="text-secondary">Reply</a>
-                        </p>
+
                     </div>
 
-                    <div class="row mb-4">
-                        <div class="col-1">&nbsp;</div>
-                        <div class="col-11">
-                            <p><small>
-                                    <span class="text-muted">Posted</span> <span class="text-black">2 minutes ago</span>
-                                    <span class="text-muted">ago
-                                        by</span> <span class="text-black">xxxx</span>
-
-                                </small>
-                            </p>
-                            <div class="border-start ps-2">
-                                <p>Lorem
-                                    Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                    has
-                                    been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    printer
-                                    took a
-                                    galley of type and scrambled it to make a type specimen book. It has survived not
-                                    only</p>
-                                <p>likes | share</p>
+                    <div class="row justify-content-end mb-4">
+                        <form class="col-md-11" method="POST" action="{{ route('posts.comment.store', $post) }}">
+                            @csrf
+                            <div class="mb-3">
+                                <textarea class="form-control" name="comment_text" rows="3"
+                                    placeholder="what are your thoughts?" required></textarea>
+                            </div>
+                            {{-- <i class="fa fa-comments-o" aria-hidden="true">&nbsp;&nbsp;</i><a href="#"
+                                class="text-secondary">Reply</a> --}}
+                            <div class="d-flex justify-content-end">
+                                @auth
+                                <button type="submit" class="btn btn-sm btn-secondary">Comments</button>
+                                @endauth
+                                @guest
+                                <div class="text-muted">sign in to comment</div>
+                                @endguest
                             </div>
 
-                            {{--
-                            <hr style="border-top: dashed 1px;"> --}}
-                        </div>
+                        </form>
                     </div>
 
-                    <div class="row  mb-4">
+                    @forelse ($post->comments as $comment)
+                    <div class="row mb-3">
                         <div class="col-1">&nbsp;</div>
                         <div class="col-11">
                             <p><small>
-                                    <span class="text-muted">Posted</span> <span class="text-black">2 minutes ago</span>
+                                    <span class="text-muted">Posted</span> <span class="text-black">{{
+                                        $comment->created_at->diffForHumans() }}</span>
                                     <span class="text-muted">ago
-                                        by</span> <span class="text-black">xxxx</span>
+                                        by</span> <span class="text-black">{{
+                                        $comment->user->username }}</span>
 
                                 </small>
                             </p>
-                            <div class="border-start ps-2">
-                                <p>Lorem
-                                    Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                    has
-                                    been the industry's standard dummy text ever since the 1500s, when an unknown
-                                    printer
+                            <div class="border-start ps-4">
+                                <p>{{ $comment->comment_text }}</p>
+                                <p><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                    <a href="#">likes</a> | <i class="fa fa-share" aria-hidden="true"></i>
+                                    <a href="">share</a>
                                 </p>
-                                <p>likes | share</p>
                             </div>
-
-                            {{--
-                            <hr style="border-top: dashed 1px;"> --}}
                         </div>
                     </div>
+                    @empty
+                    <p>no comments</p>
+                    @endforelse
 
                 </div>
             </div>

@@ -73,6 +73,7 @@ class CommunityPostController extends Controller
     public function show($postId)
     {
         $post = Post::findOrFail($postId);
+        $post->load('comments.user');
         return view('post.show', compact('post'));
     }
 
