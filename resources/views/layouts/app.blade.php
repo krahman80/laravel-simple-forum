@@ -83,7 +83,77 @@
         </nav>
 
         <main class="py-5">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 mb-4">
+
+                        @yield('content')
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">{{ __('New post') }}</div>
+
+                                    <div class="card-body">
+                                        @forelse ($newestPost as $post)
+                                        <a href="{{ route('communities.post.show', $post->id) }}" class="link-dark">{{
+                                            $post->title }}</a>
+                                        <p class="text-sm">
+                                            <small>
+                                                <span class="text-muted">Posted</span> <span class="text-black">{{
+                                                    $post->created_at->diffForHumans() }}</span> <span
+                                                    class="text-muted">ago
+                                                    by</span> <span class="text-black">{{ $post->user->username
+                                                    }}</span>
+                                            </small>
+                                        </p>
+                                        <hr>
+                                        @empty
+                                        <p>Post not found!</p>
+                                        @endforelse
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">{{ __('New community') }}</div>
+
+                                    <div class="card-body">
+
+                                        @forelse ($newestCommunity as $community)
+                                        <a href="{{ route('communities.show', $community) }}" class="link-dark">{{
+                                            $community->name }}</a>&nbsp;&nbsp;<span class="badge bg-secondary">{{
+                                            $community->posts_count }}</span>
+                                        <p class="text-sm">
+                                            <small>
+                                                <span class="text-muted">Posted</span> <span class="text-black">{{
+                                                    $community->created_at->diffForHumans() }}</span> <span
+                                                    class="text-muted">ago
+                                                    by</span> <span class="text-black">{{
+                                                    $community->user->username}}</span>
+                                            </small>
+                                        </p>
+                                        <hr>
+                                        @empty
+                                        <p>No community found!</p>
+                                        @endforelse
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </main>
     </div>
 </body>
