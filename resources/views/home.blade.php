@@ -3,8 +3,25 @@
 @section('content')
 
 <div class="col-md-12 mb-3">
+    @if( Auth::check() && !Auth::user()->email_verified_at )
+    <div class="card mb-4">
+        <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+
+        <div class="card-body">
+            {{ __('Before proceeding, please check your email for a verification link.') }}
+        </div>
+    </div>
+    @endif
+
     <div class="card">
-        <div class="card-header">{{ __('Home') }}</div>
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <span class="fw-bold">{{ __('Post') }}</span>
+                <span class="text-muted">Sort by: <a href="" class="text-dark">popularity</a> | <a href=""
+                        class="text-dark">newest</a></span>
+            </div>
+
+        </div>
 
         <div class="card-body">
             {{-- content begin here --}}
@@ -12,13 +29,14 @@
             <div class="row">
                 <div class="col-1 text-center">
                     <div>
-                        <a href="#" class="link-secondary text-decoration-none">
+                        <a href="{{ route('post.vote.store', [$post, 1])}}" class="link-secondary text-decoration-none">
                             <i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i>
                         </a>
                     </div>
-                    <div style="font-size: 20px; font-weight: bold">{{ 3 }}</div>
+                    <div style="font-size: 20px; font-weight: bold">{{ $post->votes }}</div>
                     <div>
-                        <a href="#" class="link-secondary text-decoration-none">
+                        <a href="{{ route('post.vote.store', [$post, -1])}}"
+                            class="link-secondary text-decoration-none">
                             <i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i>
                         </a>
                     </div>
@@ -36,11 +54,11 @@
                     </p>
                     <p>{{ Illuminate\Support\Str::of($post->post)->words('10', '...') }}</p>
                     <div class="text-sm op-5">
-                        <small>
+                        {{-- <small>
                             @foreach ($post->community->topics as $item)
                             <a class="text-black mr-2" href="#">#{{ $item->name }}</a>
                             @endforeach
-                        </small>
+                        </small> --}}
                     </div>
                 </div>
             </div>

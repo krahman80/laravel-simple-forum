@@ -127,9 +127,12 @@
                                     <div class="card-body">
 
                                         @forelse ($newestCommunity as $community)
-                                        <a href="{{ route('communities.show', $community) }}" class="link-dark">{{
-                                            $community->name }}</a>&nbsp;&nbsp;<span class="badge bg-secondary">{{
-                                            $community->posts_count }}</span>
+                                        <div class="d-flex justify-content-between">
+                                            <a href="{{ route('communities.show', $community) }}" class="link-dark">{{
+                                                $community->name }}</a>
+                                            <div><span class="badge bg-light text-dark">{{
+                                                    $community->posts_count }} posts&nbsp;</span></div>
+                                        </div>
                                         <p class="text-sm">
                                             <small>
                                                 <span class="text-muted">Posted</span> <span class="text-black">{{

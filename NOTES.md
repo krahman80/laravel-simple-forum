@@ -50,10 +50,7 @@
 * user can add comment to post
 * add data seeder
 * change template, add shared view
-
-### To Do
 * add votes to post
 
-
-
-
+### To Do
+* sort post by votes (popularity) and sort by newest

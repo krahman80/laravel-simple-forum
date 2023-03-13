@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-1 text-center">
                 <div>
-                    <a href="#" class="link-secondary text-decoration-none">
+                    <a href="{{ route('post.vote.store', [$post, 1])}}" class="link-secondary text-decoration-none">
                         <i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i>
                     </a>
                 </div>
-                <div style="font-size: 20px; font-weight: bold">{{ 3 }}</div>
+                <div style="font-size: 20px; font-weight: bold">{{ $post->votes }}</div>
                 <div>
-                    <a href="#" class="link-secondary text-decoration-none">
+                    <a href="{{ route('post.vote.store', [$post, -1])}}" class="link-secondary text-decoration-none">
                         <i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i>
                     </a>
                 </div>

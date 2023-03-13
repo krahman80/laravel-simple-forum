@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
 Route::get('c/{slug}', [App\Http\Controllers\CommunityController::class, 'show'])->name('communities.show');
 Route::get('p/{postId}', [\App\Http\Controllers\CommunityPostController::class, 'show'])->name('communities.post.show');
 
@@ -23,4 +23,5 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('communities', App\Http\Controllers\CommunityController::class)->except(['show']);
     Route::resource('communities.post', App\Http\Controllers\CommunityPostController::class)->except(['show']);
     Route::resource('posts.comment', App\Http\Controllers\PostCommentController::class)->only(['store']);
+    Route::get('posts.vote/{post}/vote/{vote}', [\App\Http\Controllers\PostVoteController::class, 'store'])->name('post.vote.store');
 });
