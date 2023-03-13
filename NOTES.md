@@ -27,8 +27,8 @@
   2. votes
 * reports
 
-## User case
-### completed
+## Use case
+### Completed to do
 
 * guest can register
 * guest must verify email after register
@@ -51,6 +51,6 @@
 * add data seeder
 * change template, add shared view
 * add votes to post
+* sort post by votes (popularity) and sort by newest
 
 ### To Do
-* sort post by votes (popularity) and sort by newest

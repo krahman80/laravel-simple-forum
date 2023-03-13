@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Community;
 use App\Models\Post;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -13,13 +13,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        // order by most voted
-        // and order by lattest post
-        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
+        $query = Post::query();
+        $query->when($request->input('sort') == 'votes', function ($query) {
+            $query->orderBy('votes', 'desc');
+        })->when($request->input('sort') == '', function ($query) {
+            $query->latest();
+        });
 
-        $communities = Community::orderBy('created_at', 'desc')->take(5)->get();
-        return view('home', compact('communities', 'posts'));
+        $posts = $query->paginate(10);
+        return view('home', compact('posts'));
     }
 }

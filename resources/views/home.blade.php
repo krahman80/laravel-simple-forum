@@ -17,8 +17,13 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <span class="fw-bold">{{ __('Post') }}</span>
-                <span class="text-muted">Sort by: <a href="" class="text-dark">popularity</a> | <a href=""
-                        class="text-dark">newest</a></span>
+                <span class="text-muted">Sort by:
+                    <a href="{{ route('/')}}" class="text-dark" @if (request('sort', '' )=='' ) style="font-weight: 600"
+                        @endif>newest</a>
+                    |
+                    <a href="{{ route('/') }}?sort=votes" class="text-dark" @if (request('sort', '' )=='votes' )
+                        style="font-weight:600" @endif>votes</a>
+                </span>
             </div>
 
         </div>
