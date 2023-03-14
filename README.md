@@ -1,51 +1,86 @@
-## Docker for PHP
-* nginx
-* php 8.0.24
-* mariadb 10.5.9
-* adminer
+<h1 align="center">
+  Laravel Simple Forum
+</h1>
+<br/>
+<h4 align="center">Simple forum build using laravel.</h4>
+<br/>
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#screenshot">Screenshot</a> •
+  <a href="#credits">Credits</a> •
+  <a href="#related">Related</a> •
+  <a href="#license">License</a>
+</p>
 
-## How to use with laravel 8
-1. Clone this repository
-2. Build images using this command
-> $ docker compose build
-3. Run images using this command
-> $ docker compose up -d
-4. Go to app container shell using this command
-> $ docker exec -it app bash
-5. Inside the container install laravel using this command, this will create project folder in root folder
-> $ composer create-project --prefer-dist laravel/laravel:^8.0 project
-6. Next, move the content of the project folder, to our root directory using this command
-> $ mv ./project/* ./
+## Key Features
 
-> $ mv ./project.* ./
+* Authentication.
+* User email verification.
+* Slug.
+* Soft deletes.
+* Create, update, delete Community.
+* Add topics to community.
+* Create, edit, delete Post.
+* Upload images when create post.
+* Add url when create post.
+* Comment to a post
+* Votes a post
+* Sort post by votes
+* sort post by latest
 
-there will a notification, just select no
 
-7. Remove project folder using this command 
-> $ rm -rf project/
-8. Exit the container, using this command
-> $ exit
-9. Shutdown all the container
-> $ docker compose down
-10. Start up again the container
-> $ docker compose up -d
+## How To Use
 
-## laravel breeze installation
-1. Add this command inside our app container to install laravel breeze
-> composer require laravel/breeze:1.9.4
-2. Install laravel breeze setup
-> php artisan breeze:install
-3. Install tailwind dependencies
-> npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
-4. Exit from container
-5. Execute this command
-> npm install && npm run dev
-6. Back to container shell, execute this command.
-> php artisan migrate
+To clone and run this application, you'll need [Docker](https://docker.com) installed on your computer. From your command line:
 
-## laravel ui installation
-> composer require laravel/ui
+```bash
+# Clone this repository
+$ git clone https://github.com/krahman80/laravel-simple-forum.git
 
-> php artisan ui bootstrap --auth
+# Go into the repository
+$ cd laravel-simple-forum
 
-> npm install && npm run dev
+# Run docker compose
+$ docker compose up -d
+
+# Get into docker console
+$ docker exec -it app bash
+
+# Install your laravel package
+$ composer install
+
+# Configure your .env file
+
+# Migrate database
+$ php artisan migrate
+
+# Seed database
+$ php artisan db:seed
+
+# Open your browser and open this url http://localhost:8020
+
+```
+
+## Screenshot
+
+![001](https://user-images.githubusercontent.com/22634073/224919686-5fff9034-7482-465d-868e-012225dfcd7e.jpg)
+
+![002](https://user-images.githubusercontent.com/22634073/224919703-193fc0a6-ee45-4c11-8115-8215312197f3.jpg)
+
+![003](https://user-images.githubusercontent.com/22634073/224919718-8d029cdb-1769-4b5c-8a0b-bfac5311d7f4.jpg)
+
+## Credits
+
+This software uses the following open source packages:
+
+- [Laravel](http://laravel.com/)
+
+## License
+
+MIT
+
+---
+
+> GitHub [@Krahman80](https://github.com/krahman80) &nbsp;&middot;&nbsp;
+
